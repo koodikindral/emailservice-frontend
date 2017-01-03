@@ -1,3 +1,22 @@
-<ul>
-  <li *ngFor="let template of templates">{{template.id}}. {{template.code}}</li>
-</ul>
+<div class="container-fluid">
+  <button type="button" class="btn btn-success">Add new</button>
+  <table class="table table-hover">
+    <thead class="thead-inverse">
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th class="text-xs-right">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let template of templates">
+      <th scope="row">{{template.id}}</th>
+      <td>{{template.code}}</td>
+      <td class="text-xs-right">
+        <button type="button" class="btn btn-primary">Edit</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

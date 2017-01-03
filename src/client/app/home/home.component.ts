@@ -5,7 +5,6 @@ import { EmailService } from '../shared/index';
   moduleId: module.id,
   selector: 'sd-home',
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.css'],
 })
 export class HomeComponent implements OnInit {
 
