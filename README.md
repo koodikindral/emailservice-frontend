@@ -27,8 +27,9 @@ http://petstore.swagger.io/?url=http://api.gert.ee/swagger.json
 
 # Used technologies & tools
 
-- [Angular2](https://github.com/angular/angular/)
+- [Angular](https://github.com/angular/angular/)
 - [Angular Seed](https://github.com/mgechev/angular-seed/)
+- [ng2-bootstrap](https://github.com/valor-software/ng2-bootstrap)
 
 # License
 
