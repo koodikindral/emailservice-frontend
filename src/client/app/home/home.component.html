@@ -1,30 +1,32 @@
 <div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" (click)="modal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title">New/Edit</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="usr">Code:</label>
-          <input type="text" class="form-control" id="usr" value="{{template?.code}}">
+      <form #templateForm="ngForm" (ngSubmit)="saveTemplate()">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="modal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">New/Edit</h4>
         </div>
-        <div class="form-group">
-          <label for="body-text">Body Text:</label>
-          <textarea class="form-control" rows="5" id="body-text">{{template?.bodyText}}</textarea>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="code">Code:</label>
+            <input [(ngModel)]="template.code" name="code" type="text" class="form-control" id="code" required>
+          </div>
+          <div class="form-group">
+            <label for="body-text">Body Text:</label>
+            <textarea [(ngModel)]="template.bodyText" name="bodyText" class="form-control" rows="5" id="body-text" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="body-html">Body HTML:</label>
+            <textarea [(ngModel)]="template.bodyHtml" name="bodyHtml" class="form-control" rows="5" id="body-html" required></textarea>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="body-html">Body HTML:</label>
-          <textarea class="form-control" rows="5" id="body-html">{{template?.bodyHtml}}</textarea>
+        <div class="modal-footer">
+          <button  [disabled]="!templateForm.form.valid" type="button" class="btn btn-success" (click)="saveTemplate()">Save</button>
+          <button type="button" class="btn btn-danger" (click)="modal.hide()">Close</button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success">Save</button>
-        <button type="button" class="btn btn-danger" (click)="modal.hide()">Close</button>
-      </div>
+      </form>
     </div>
   </div>
 </div>

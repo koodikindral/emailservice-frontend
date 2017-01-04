@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { EmailService } from '../shared/index';
+import { EmailService, EmailTemplate } from '../shared/index';
 import { ModalDirective } from 'ng2-bootstrap';
 
 @Component({
@@ -10,10 +10,13 @@ import { ModalDirective } from 'ng2-bootstrap';
 export class HomeComponent implements OnInit {
   @ViewChild('modal') public modal: ModalDirective;
   errorMessage: string;
-  templates: Array<any> = [];
-  template: any;
+  templates: Array<EmailTemplate> = [];
+  template: EmailTemplate;
 
-  constructor(public emailService: EmailService) {}
+  constructor(public emailService: EmailService) {
+    this.template = new EmailTemplate();
+    console.log(this.template);
+  }
 
   ngOnInit() {
     this.getTemplates();
@@ -37,11 +40,25 @@ export class HomeComponent implements OnInit {
   }
 
   addTemplate() {
-    this.template = null;
+    this.template = new EmailTemplate();
     this.modal.show();
   }
 
   saveTemplate() {
-
+    if (this.template.id) {
+      this.emailService.editTemplate(this.template)
+        .subscribe(
+          template => this.getTemplates(),
+          error => this.errorMessage = <any>error,
+          () => this.modal.hide()
+        );
+    } else {
+      this.emailService.addTemplate(this.template)
+        .subscribe(
+          template => this.getTemplates(),
+          error => this.errorMessage = <any>error,
+          () => this.modal.hide()
+        );
+    }
   }
 }

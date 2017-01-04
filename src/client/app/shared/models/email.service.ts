@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Config } from '../index';
-
+import { EmailTemplateModel } from 'index';
 @Injectable()
 export class EmailService {
 
@@ -18,6 +18,22 @@ export class EmailService {
     return this.http.get(`${Config.API}/templates/${id}?language=EN`)
                     .map((res: Response) => res.json())
                     .catch(this.handleError);
+  }
+
+  addTemplate(template: EmailTemplateModel): Observable<string[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(`${Config.API}/templates/?language=EN`, template, options)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
+  editTemplate(template: EmailTemplateModel): Observable<string[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(`${Config.API}/templates/${template.id}?language=EN`, template, options)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
   }
 
   private handleError (error: any) {
