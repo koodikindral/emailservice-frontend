@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ToolbarComponent } from './toolbar/index';
-import { EmailService } from './email/index';
+import { EmailService } from './models/index';
 
 @NgModule({
   imports: [CommonModule, RouterModule],

@@ -1,10 +1,41 @@
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="modal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">New/Edit</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="usr">Code:</label>
+          <input type="text" class="form-control" id="usr" value="{{template?.code}}">
+        </div>
+        <div class="form-group">
+          <label for="body-text">Body Text:</label>
+          <textarea class="form-control" rows="5" id="body-text">{{template?.bodyText}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="body-html">Body HTML:</label>
+          <textarea class="form-control" rows="5" id="body-html">{{template?.bodyHtml}}</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-danger" (click)="modal.hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <table class="table table-hover">
   <thead class="thead-inverse">
   <tr>
     <th>ID</th>
     <th>Code</th>
     <th>Text Content</th>
-    <th class="text-xs-right"><button type="button" class="btn btn-success">Add new</button></th>
+    <th class="text-xs-right"><button type="button" class="btn btn-success" (click)="addTemplate()">Add new</button></th>
   </tr>
   </thead>
   <tbody>
@@ -13,7 +44,7 @@
     <td>{{template.code}}</td>
     <td><small>{{template.bodyText}}</small></td>
     <td class="text-xs-right">
-      <button type="button" class="btn btn-primary">Edit</button>
+      <button type="button" class="btn btn-primary" (click)="editTemplate(template.id)">Edit</button>
       <button type="button" class="btn btn-danger">Delete</button>
       <button type="button" class="btn btn-info">Test</button>
     </td>
