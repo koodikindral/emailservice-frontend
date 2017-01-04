@@ -73,4 +73,13 @@ export class HomeComponent implements OnInit {
         );
     }
   }
+
+  testTemplate(id: number) {
+    this.emailService.testTemplate(id)
+      .subscribe(
+        template => this.getTemplates(),
+        error => this.errorMessage = <any>error,
+        () => this.modal.hide()
+      );
+  }
 }

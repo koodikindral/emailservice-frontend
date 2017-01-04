@@ -41,10 +41,16 @@ export class EmailService {
       .catch(this.handleError);
   }
 
+  testTemplate(id: number): Observable<string[]> {
+    let options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) });
+    return this.http.post(`${Config.API}/templates/${id}/test/?language=EN`, null, options)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
   private handleError (error: any) {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg);
     return Observable.throw(errMsg);
   }
 }
