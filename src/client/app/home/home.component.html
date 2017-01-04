@@ -38,8 +38,9 @@
             <textarea [(ngModel)]="template.bodyText" name="bodyText" class="form-control" rows="5" id="body-text" required></textarea>
           </div>
           <div class="form-group">
-            <label for="body-html">Body HTML:</label>
-            <textarea [(ngModel)]="template.bodyHtml" name="bodyHtml" class="form-control" rows="5" id="body-html" required></textarea>
+            <label>Body HTML:</label>
+            <ckeditor [(ngModel)]="template.bodyHtml" name="bodyHtml">
+            </ckeditor>
           </div>
         </div>
         <div class="modal-footer">

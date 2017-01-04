@@ -34,7 +34,15 @@ export class ProjectConfig extends SeedConfig {
           main: 'moment.js',
           defaultExtension: 'js'
         }
-      }
+      },
+      {
+        name:'ng2-ckeditor',
+        path:'node_modules/ng2-ckeditor/lib',
+        packageMeta:{
+          main: 'index.js',
+          defaultExtension: 'js'
+        }
+      },
     ];
     this.addPackagesBundles(additionalPackages);
   }
