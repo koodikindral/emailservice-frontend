@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Config } from '../index';
 import { EmailTemplateModel } from './index';
+import { TestEmailTemplate } from './testEmail.model';
 
 @Injectable()
 export class EmailService {
@@ -41,9 +42,9 @@ export class EmailService {
       .catch(this.handleError);
   }
 
-  testTemplate(id: number): Observable<string[]> {
+  testTemplate(template: TestEmailTemplate): Observable<string[]> {
     let options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) });
-    return this.http.post(`${Config.API}/templates/${id}/test/?language=EN`, null, options)
+    return this.http.post(`${Config.API}/templates/${template.id}/test/?language=EN&email=${template.email}`, template.tags, options)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
