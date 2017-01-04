@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Config } from '../index';
-import { EmailTemplateModel } from 'index';
+import { EmailTemplateModel } from './index';
+
 @Injectable()
 export class EmailService {
 
@@ -21,16 +22,14 @@ export class EmailService {
   }
 
   addTemplate(template: EmailTemplateModel): Observable<string[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) });
     return this.http.post(`${Config.API}/templates/?language=EN`, template, options)
       .map((res: Response) => res.json())
       .catch(this.handleError);
   }
 
   editTemplate(template: EmailTemplateModel): Observable<string[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+    let options = new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) });
     return this.http.put(`${Config.API}/templates/${template.id}?language=EN`, template, options)
       .map((res: Response) => res.json())
       .catch(this.handleError);
