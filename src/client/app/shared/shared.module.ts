@@ -4,13 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ToolbarComponent } from './toolbar/index';
-import { NavbarComponent } from './navbar/index';
 import { EmailService } from './email/index';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [ToolbarComponent, NavbarComponent],
-  exports: [ToolbarComponent, NavbarComponent,
+  declarations: [ToolbarComponent],
+  exports: [ToolbarComponent,
     CommonModule, FormsModule, RouterModule]
 })
 export class SharedModule {
