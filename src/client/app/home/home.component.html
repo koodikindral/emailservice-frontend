@@ -34,6 +34,10 @@
             <input [(ngModel)]="template.code" name="code" type="text" class="form-control" id="code" required>
           </div>
           <div class="form-group">
+            <label for="title">Title:</label>
+            <input [(ngModel)]="template.title" name="title" type="text" class="form-control" id="title" required>
+          </div>
+          <div class="form-group">
             <label for="body-text">Body Text:</label>
             <textarea [(ngModel)]="template.bodyText" name="bodyText" class="form-control" rows="5" id="body-text" required></textarea>
           </div>
@@ -57,6 +61,7 @@
   <tr>
     <th>ID</th>
     <th>Code</th>
+    <th>Title</th>
     <th>Text Content</th>
     <th class="text-xs-right"><button type="button" class="btn btn-success" (click)="addTemplate()">Add new</button></th>
   </tr>
@@ -65,6 +70,7 @@
   <tr *ngFor="let template of templates">
     <th scope="row">{{template.id}}</th>
     <td>{{template.code}}</td>
+    <td>{{template.title}}</td>
     <td><small>{{template.bodyText}}</small></td>
     <td class="text-xs-right">
       <button type="button" class="btn btn-primary" (click)="editTemplate(template.id)">Edit</button>
