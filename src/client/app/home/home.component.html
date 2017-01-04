@@ -26,7 +26,8 @@
           <button type="button" class="close" (click)="modal.hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title">New/Edit</h4>
+          <h4 class="modal-title" *ngIf="template?.id">Edit template</h4>
+          <h4 class="modal-title" *ngIf="!template?.id">New template</h4>
         </div>
         <div class="modal-body">
           <div class="form-group">
