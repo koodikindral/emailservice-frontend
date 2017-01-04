@@ -9,9 +9,12 @@ import { ModalDirective } from 'ng2-bootstrap';
 })
 export class HomeComponent implements OnInit {
   @ViewChild('modal') public modal: ModalDirective;
+  @ViewChild('confirm') public confirm: ModalDirective;
+
   errorMessage: string;
   templates: Array<EmailTemplate> = [];
   template: EmailTemplate;
+  deleteId: number = null;
 
   constructor(public emailService: EmailService) {
     this.template = new EmailTemplate();
@@ -36,6 +39,15 @@ export class HomeComponent implements OnInit {
         template => this.template = template,
         error => this.errorMessage = <any>error,
         () => this.modal.show()
+      );
+  }
+
+  deleteTemplate() {
+    this.emailService.deleteTemplate(this.deleteId)
+      .subscribe(
+        template => this.getTemplates(),
+        error => this.errorMessage = <any>error,
+        () => this.confirm.hide()
       );
   }
 

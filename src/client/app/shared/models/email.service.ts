@@ -35,6 +35,12 @@ export class EmailService {
       .catch(this.handleError);
   }
 
+  deleteTemplate(id: number): Observable<string[]> {
+    return this.http.delete(`${Config.API}/templates/${id}?language=EN`)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+  }
+
   private handleError (error: any) {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
