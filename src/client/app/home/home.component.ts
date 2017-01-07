@@ -79,7 +79,6 @@ export class HomeComponent implements OnInit {
 
   testTemplate(id?: number) {
     if (id) {
-      var tags: any = { 'name': 'KOODIKINDRAL' };
       this.emailService.getTemplate(id)
         .subscribe(
           template => this.setTestTemplate(template, id),
@@ -93,6 +92,7 @@ export class HomeComponent implements OnInit {
           error => this.errorMessage = <any>error,
           () => this.testModal.hide()
         );
+      this.testModal.hide()
     }
     return false;
   }
