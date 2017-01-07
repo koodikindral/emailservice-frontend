@@ -11,7 +11,7 @@ export class TestEmailTemplate implements TestEmailTemplateModel {
     public id?: number,
     public email?: string,
     public tags?: any,
-    public bodyHtml?: string,
-    public originalHtml?: string,
+    public bodyHtml?: any,
+    public originalHtml?: any,
   ) {  }
 }

@@ -79,15 +79,10 @@ export class HomeComponent implements OnInit {
 
   testTemplate(id?: number) {
     if (id) {
-      var tags: any = { "name": "KOODIKINDRAL" };
+      var tags: any = { 'name': 'KOODIKINDRAL' };
       this.emailService.getTemplate(id)
         .subscribe(
-          template => this.testEmailTemplate =
-            new TestEmailTemplate(id,
-                                  'gert.vesterberg@gmail.com',
-                                  JSON.stringify(tags, null, '\t'),
-                                  this.replaceTags(template.bodyHtml, tags),
-                                  template.bodyHtml),
+          template => this.setTestTemplate(template, id),
           error => this.errorMessage = <any>error,
           () => this.testModal.show()
         );
@@ -102,10 +97,20 @@ export class HomeComponent implements OnInit {
     return false;
   }
 
+  setTestTemplate(template: any, id: number) {
+    let tags: any = { 'name': 'KOODIKINDRAL' };
+    this.testEmailTemplate =
+      new TestEmailTemplate(id,
+        'gert.vesterberg@gmail.com',
+        JSON.stringify(tags, null, '\t'),
+        this.replaceTags(<any>template['bodyHtml'], tags),
+        template['bodyHtml']);
+  }
+
   tagsChanged() {
     try {
       this.testEmailTemplate.bodyHtml = this.replaceTags(this.testEmailTemplate.originalHtml, JSON.parse(this.testEmailTemplate.tags));
-    } catch(err) { }
+    } catch(err) { console.log(err); }
   }
 
   replaceTags(html: string, tags: any) {
@@ -113,7 +118,7 @@ export class HomeComponent implements OnInit {
       Object.keys(tags).map((key) => {
         html = html.replace(`$${key}$`, tags[key]);
       });
-    } catch(err) { }
+    } catch(err) { console.log(err); }
     return html;
   }
 }
